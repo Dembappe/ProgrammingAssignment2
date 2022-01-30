@@ -9,7 +9,7 @@
 ## makeCacheMatrix: it creates a special "matrix" object that can cache its inverse.
 ## These functions work only for invertible square matrices
 
-makeCacheMatrix <- function(x = matrix()) {  #Step 1a: initialize as a function argument as 'matrix'.
+makeCacheMatrix <- function(x = matrix()) {  #Step 1a: initialize as a function argument as matrix.
   invMatrix <- NULL                          #Step 1b: initialize 'invMatrix' as NULL to hold the value of the inversed matrix.
   setMatrix <- function(y) {                 #Step 2a: set object 'y' as an input argument which assigns to the
     x <<- y                                  #'x' object(matrix) in the parent environment.
@@ -45,7 +45,7 @@ cacheSolve <- function(x, ...) {                        #Step 1: Initialize the 
     return(invMatrix)
   }
   
-  #Step 4: if the result of !is.null is FALSE, then calculate the inverse using solve() and print the inv
+  #Step 4: if the result of !is.null is FALSE, then calculate the inverse using solve() and print the 'invMatrix'
   NewMatrix <- x$getMatrix()             #Step 4a: get the matrix by using 'x$getMatrix' function and assign it into the variable
   invMatrix <- solve(NewMatrix, ...)     #Step 4b: inverse the matrix by using the solve() function along with the additional arguments
   x$setInverse(invMatrix)                #Step 4c: set the value of 'invMatrix' as setInverse
