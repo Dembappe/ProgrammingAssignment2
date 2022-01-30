@@ -24,8 +24,8 @@ makeCacheMatrix <- function(x = matrix()) {  #Step 1a: initialize as a function 
   set <- function(y) {                       #Step 2a: set object other than 'x', in this case 'y' as an input. So, it 
     x <<- y                                  #will assign the input argument to the 'x' object(matrix) in the parent environment.
     inv <<- NULL                             #Step 2b: this code clears any value that had been cached by 'cacheSolve' by 
-  }                                          #resetting 'inv' to NULL. Whenever 'x' is reset, the value of 'inv' cached in the memory
-                                             #is cleared, forcing 'cacheSolve' to recalculate the inverse rather than retrieving wrong value.
+  }                                          #resetting 'inv' to NULL. 
+                                             
   
   get <- function() x                       #Step 2c: define the getter for matrix 'x' function to return the value of matrix argument.
   
@@ -33,11 +33,11 @@ makeCacheMatrix <- function(x = matrix()) {  #Step 1a: initialize as a function 
                                                       #to the value of 'inv' in the parent environment.
   getinverse <- function() inv                        #Step 2e: define the getter for the 'inv' function to return the its value.
   
-  #Step 3: assign each of the 4 functions as an element within a list(), and return it to the parent environment
-  list(set = set,                           #gives the name 'set' to the set() function
-       get = get,                           #gives the name 'get' to the get() function
-       setinverse = setinverse,             #gives the name 'setinverse' to the setinverse() function
-       getinverse = getinverse)             #gives the name 'getinverse' to the getinverse() function
+  #Step 3: assign each of the 4 functions as an element with a name and within a list(), and return it to the parent environment
+  list(set = set,                           
+       get = get,                           
+       setinverse = setinverse,             
+       getinverse = getinverse)             
   
   #naming the list elements so that we can use the '$' operator to access the functions
 }                                           
@@ -51,8 +51,8 @@ makeCacheMatrix <- function(x = matrix()) {  #Step 1a: initialize as a function 
 ## 4 General Steps:
 ## 1. Initialize the single argument with an ellipsis to allow the caller to pass additional arguments if needed.
 ## 2. Retrieve the inverse matrix of 'x' 
-## 3. Check to see whether the result of 'x' is NULL. Since the function in makeCacheMatrix sets the cached inverse
-## to be NULL whenever new values are assigned. If the value is not NULL, the cached inverse is valid and can be returned
+## 3. Check to see whether the result of 'x' is NULL. Whenever new values are assigned, the function in makeCacheMatrix 
+## sets the cached inverse to be NULL. If the value is not NULL, the cached inverse is valid and can be returned
 ## to the parent environment.
 
 ## 4. If the result of the checking is false, 'cacheSolve' gets the input matrix and calculates the inverse using solve(),
