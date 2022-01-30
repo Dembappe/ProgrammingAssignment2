@@ -7,12 +7,6 @@
 ## Write a short comment describing this function
 
 ## makeCacheMatrix: it creates a special "matrix" object that can cache its inverse.
-
-## 3 General Steps:
-## 1. Initialize the 2 objects: x(empty matrix) & invMatrix(NULL)
-## 2. Define the functions within object: getters(retrieve data) and setters(mutate data values)
-## 3. Assign the functions created as an element within a list() and return to the parent environment
-
 ## These functions work only for invertible square matrices
 
 makeCacheMatrix <- function(x = matrix()) {  #Step 1a: initialize as a function argument as 'matrix'.
@@ -42,13 +36,6 @@ makeCacheMatrix <- function(x = matrix()) {  #Step 1a: initialize as a function 
 
 ## cacheSolve: it computes the inverse matrix returned by the makeCacheMatrix. If the inverse has already
 ## been calculated and the matrix has not changed, it will retrieve the inverse from the cache.
-
-## 4 General Steps:
-## 1. Initialize the single argument with an ellipsis to allow the caller to pass additional arguments if needed.
-## 2. Retrieve the inverse matrix of 'x' 
-## 3. Check to see whether the result of 'x' is NULL. 
-## 4. If the result of the checking is false, 'cacheSolve' gets the input matrix and calculates the inverse using solve(),
-## and uses the setInverse() function in the input object. 
 
 cacheSolve <- function(x, ...) {                        #Step 1: Initialize the argument 'x' with ellipsis
         ## Return a matrix that is the inverse of 'x'
